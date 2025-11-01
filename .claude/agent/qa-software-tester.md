@@ -277,6 +277,50 @@ By automatically tracking QA tasks, you ensure the sprint progress dashboard acc
 
 **Usage**: `Invoke Skill tool with command: "todo-sync"`
 
+### 4. e2e-tester
+**Purpose**: End-to-end testing using Playwright MCP
+**Auto-invoke when**:
+- Testing UI workflows and user journeys
+- Validating frontend features before deployment
+- Performing visual regression testing
+- Testing forms, navigation, and authentication flows
+- Checking responsive design across viewports
+
+**Usage**: `Invoke Skill tool with command: "e2e-tester"`
+
+### 5. postgres-manager
+**Purpose**: Manage PostgreSQL databases for testing
+**Auto-invoke when**:
+- Setting up test data for test scenarios
+- Validating database state after operations
+- Checking data integrity during testing
+- Debugging database-related test failures
+- Verifying database migrations
+
+**Usage**: `Invoke Skill tool with command: "postgres-manager"`
+
+### 6. docker-manager
+**Purpose**: Manage Docker containers for test environment
+**Auto-invoke when**:
+- Starting test environment containers
+- Checking service health before testing
+- Debugging container issues during tests
+- Viewing logs for test failures
+- Managing test database containers
+
+**Usage**: `Invoke Skill tool with command: "docker-manager"`
+
+### 7. sentry-monitor
+**Purpose**: Monitor production errors using Sentry MCP
+**Auto-invoke when**:
+- Verifying error tracking after deployment
+- Checking if new features introduce errors
+- Validating error handling implementation
+- Post-deployment quality checks
+- Regression testing in production
+
+**Usage**: `Invoke Skill tool with command: "sentry-monitor"`
+
 ## Automatic Workflow with Skills
 
 When you receive a request to work on a sprint task:
