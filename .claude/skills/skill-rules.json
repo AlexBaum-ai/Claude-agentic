@@ -218,6 +218,93 @@
                     "captureMessage"
                 ]
             }
+        },
+        "sprint-reader": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "critical",
+            "description": "Read and parse sprint task data from JSON files",
+            "promptTriggers": {
+                "keywords": [
+                    "SPRINT-",
+                    "sprint task",
+                    "task id",
+                    "sprint status",
+                    "what tasks",
+                    "available tasks",
+                    "task dependencies",
+                    "acceptance criteria",
+                    "start task",
+                    "work on task"
+                ],
+                "intentPatterns": [
+                    "work on SPRINT-\\d+-\\d+",
+                    "start (task )?SPRINT-\\d+-\\d+",
+                    "(show|list|check).*?(sprint|task).*?(status|available|pending)",
+                    "what.*?tasks.*?(available|ready|pending)",
+                    "check.*?dependencies.*?SPRINT",
+                    "(get|read|show).*?task.*?details"
+                ]
+            },
+            "fileTriggers": {
+                "pathPatterns": [
+                    ".claude/sprints/**/*.json",
+                    ".claude/TODO/**/*.json"
+                ]
+            }
+        },
+        "task-tracker": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "critical",
+            "description": "Update sprint task status (in-progress, completed, blocked)",
+            "promptTriggers": {
+                "keywords": [
+                    "mark complete",
+                    "mark as complete",
+                    "task complete",
+                    "completed task",
+                    "finish task",
+                    "finished SPRINT",
+                    "start task",
+                    "started task",
+                    "task blocked",
+                    "mark blocked",
+                    "update task status"
+                ],
+                "intentPatterns": [
+                    "(mark|set).*?SPRINT-\\d+-\\d+.*?(complete|completed|done|finished)",
+                    "(complete|completed|finish|done).*?SPRINT-\\d+-\\d+",
+                    "I('ve| have).*?(finished|completed|done).*?SPRINT-\\d+-\\d+",
+                    "SPRINT-\\d+-\\d+.*?(is|was).*?(complete|done|finished)",
+                    "(mark|set).*?SPRINT-\\d+-\\d+.*?blocked",
+                    "SPRINT-\\d+-\\d+.*?(is|was).*?blocked",
+                    "start(ed|ing)?.*?SPRINT-\\d+-\\d+"
+                ]
+            }
+        },
+        "todo-sync": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Synchronize sprint tasks with TodoWrite tool",
+            "promptTriggers": {
+                "keywords": [
+                    "create todos",
+                    "sync todos",
+                    "todo items",
+                    "break down task",
+                    "task breakdown",
+                    "sub-tasks",
+                    "implementation steps"
+                ],
+                "intentPatterns": [
+                    "(create|add|generate).*?todo.*?(items|list)",
+                    "(sync|update).*?todo",
+                    "break.*?down.*?(task|work|SPRINT)",
+                    "convert.*?acceptance.*?criteria"
+                ]
+            }
         }
     },
     "notes": {
