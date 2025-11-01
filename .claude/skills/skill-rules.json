@@ -305,6 +305,72 @@
                     "convert.*?acceptance.*?criteria"
                 ]
             }
+        },
+        "test-validator": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "critical",
+            "description": "Run tests and validate software functionality",
+            "promptTriggers": {
+                "keywords": [
+                    "run tests",
+                    "test this",
+                    "run test",
+                    "validate",
+                    "check if it works",
+                    "test the feature",
+                    "test endpoint",
+                    "verify functionality",
+                    "ready for deployment",
+                    "deployment ready",
+                    "before marking complete",
+                    "is this working"
+                ],
+                "intentPatterns": [
+                    "(run|execute).*?test",
+                    "test.*?(feature|endpoint|implementation|code)",
+                    "(validate|verify|check).*?(functionality|implementation|feature)",
+                    "(is|are).*?(it|this|feature).*?work",
+                    "ready.*?(for|to).*?(deploy|deployment|production)",
+                    "before.*(complete|deploy|merge)"
+                ]
+            }
+        },
+        "spec-guardian": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "critical",
+            "description": "Ensure implementation matches specifications",
+            "promptTriggers": {
+                "keywords": [
+                    "check specs",
+                    "verify specs",
+                    "match spec",
+                    "according to spec",
+                    "API spec",
+                    "database schema",
+                    "acceptance criteria",
+                    "implementation matches",
+                    "follows spec",
+                    "spec compliance",
+                    "validate against spec"
+                ],
+                "intentPatterns": [
+                    "(check|verify|validate).*?(spec|specification|requirements)",
+                    "(match|follow|comply).*?(spec|specification)",
+                    "according.*?to.*?(spec|requirements|docs)",
+                    "implementation.*?(match|follow|comply)",
+                    "does.*?this.*?(match|follow).*?spec"
+                ]
+            },
+            "fileTriggers": {
+                "pathPatterns": [
+                    "projectdoc/**/*.md",
+                    "doc/**/*.md",
+                    "**/04-API-ENDPOINTS.md",
+                    "**/03-DATABASE-SCHEMA.md"
+                ]
+            }
         }
     },
     "notes": {
