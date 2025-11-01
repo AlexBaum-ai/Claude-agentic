@@ -371,6 +371,59 @@
                     "**/03-DATABASE-SCHEMA.md"
                 ]
             }
+        },
+        "sentry-monitor": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "Monitor production errors using Sentry MCP",
+            "promptTriggers": {
+                "keywords": [
+                    "production errors",
+                    "sentry errors",
+                    "check sentry",
+                    "monitor production",
+                    "error monitoring",
+                    "production issues",
+                    "live errors",
+                    "recent errors",
+                    "error rate"
+                ],
+                "intentPatterns": [
+                    "(check|monitor|view).*?(production|sentry).*?error",
+                    "what.*?error.*?(happening|production)",
+                    "(sentry|production).*?monitoring",
+                    "recent.*?(errors|issues).*?production"
+                ]
+            }
+        },
+        "e2e-tester": {
+            "type": "domain",
+            "enforcement": "suggest",
+            "priority": "high",
+            "description": "E2E testing with Playwright MCP",
+            "promptTriggers": {
+                "keywords": [
+                    "E2E test",
+                    "end to end test",
+                    "test user flow",
+                    "test UI",
+                    "screenshot",
+                    "test login flow",
+                    "test registration",
+                    "playwright test",
+                    "browser test",
+                    "visual test"
+                ],
+                "intentPatterns": [
+                    "E2E.*?test",
+                    "end.*?to.*?end.*?test",
+                    "test.*?(user|login|registration|checkout).*?flow",
+                    "test.*?UI",
+                    "(take|capture).*?screenshot",
+                    "visual.*?regression"
+                ]
+            }
         }
     },
     "notes": {
