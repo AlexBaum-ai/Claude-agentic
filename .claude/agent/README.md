@@ -4,12 +4,45 @@ Specialized agents for complex, multi-step tasks.
 
 ---
 
+## ⚠️ Important: Tool Access
+
+**Agents do NOT have MCP access.**
+
+```
+✅ Agents HAVE:
+- File operations (Read, Write, Edit, Glob, Grep)
+- Bash tool (git, docker, npm, psql, sentry-cli, npx playwright)
+- Web tools (WebFetch, WebSearch)
+- Task management (TodoWrite)
+- Skills and SlashCommands
+
+❌ Agents DO NOT HAVE:
+- Direct MCP access (mcp__sentry__*, mcp__memory__*, etc.)
+- Sequential Thinking MCP
+- Memory MCP
+- Playwright MCP
+- PostgreSQL MCP
+```
+
+**How Agents Work:**
+- Use **CLI equivalents** via Bash tool
+- `sentry-cli` instead of Sentry MCP
+- `psql` instead of PostgreSQL MCP
+- `npx playwright` instead of Playwright MCP
+- Files for persistence instead of Memory MCP
+
+**For MCP Access:**
+- Use **Skills** in main conversation (not agents!)
+- See `MCP_REALITY.md` and `ARCHITECTURE_V2.md`
+
+---
+
 ## What Are Agents?
 
 Agents are autonomous Claude instances that handle specific complex tasks. Unlike skills (which provide inline guidance), agents:
 - Run as separate sub-tasks
 - Work autonomously with minimal supervision
-- Have specialized tool access
+- Have specialized tool access (but no MCP!)
 - Return comprehensive reports when complete
 
 **Key advantage:** Agents are **standalone** - just copy the `.md` file and use immediately!

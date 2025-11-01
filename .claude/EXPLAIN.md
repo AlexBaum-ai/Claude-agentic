@@ -1,8 +1,31 @@
 # 📖 Hoe Werkt Het AI Software Team?
 
+---
+
+## ⚠️ BELANGRIJKE CORRECTIE
+
+**Dit document bevat verouderde MCP claims. De realiteit:**
+
+```
+❌ Agents hebben GEEN MCP toegang
+✅ Agents gebruiken Bash CLI tools
+✅ Voor MCP's: Gebruik skills in main conversation
+```
+
+**Voor Accurate Informatie:**
+- `MCP_REALITY.md` - Hoe MCP's ECHT werken
+- `ARCHITECTURE_V2.md` - Skills-first aanpak
+- `AI_SOFTWARE_TEAM.md` - Gecorrigeerde agent docs
+
+**TL;DR**: Agents werken met CLI tools (sentry-cli, psql, npx playwright), niet met MCP's. Het systeem werkt nog steeds, maar anders dan hieronder beschreven.
+
+---
+
 ## 🎯 Kort Overzicht
 
 Dit project bevat een **compleet AI software team** dat autonome SaaS ontwikkeling mogelijk maakt. In plaats van één super-agent, werk je met een team van gespecialiseerde agents die samenwerken zoals een echt software team.
+
+**Let op**: Agents gebruiken CLI tools via Bash, niet directe MCP toegang zoals hieronder gesuggereerd.
 
 ## 🏗️ De Team Structuur
 
