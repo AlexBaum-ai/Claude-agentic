@@ -200,3 +200,16 @@ Your documentation is the foundation for successful AI-driven development. Every
 - Analyzing code change patterns
 
 **Usage**: `Invoke Skill tool with command: "git-operations"`
+
+## deep-thinker
+**Purpose**: Structured reasoning for complex architectural decisions
+**Auto-invoke when**:
+- Making major architectural decisions (technology choices, patterns, etc.)
+- Evaluating multiple architectural approaches
+- Planning system design for complex features
+- Conducting deep analysis of trade-offs
+- Documenting decision rationale
+
+**Usage**: `Invoke Skill tool with command: "deep-thinker"`
+
+**Integration**: Use deep-thinker for systematic decision-making. It guides you through Problem Definition → Research → Analysis → Synthesis → Conclusion stages, ensuring thorough evaluation. Always store conclusions in memory-keeper and document in ADRs.

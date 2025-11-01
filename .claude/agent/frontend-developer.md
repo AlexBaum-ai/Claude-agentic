@@ -190,6 +190,72 @@ By automatically tracking tasks, you ensure the sprint progress dashboard stays 
 
 **Usage**: `Invoke Skill tool with command: "todo-sync"`
 
+### 4. e2e-tester
+**Purpose**: End-to-end testing using Playwright MCP
+**Auto-invoke when**:
+- Testing UI workflows and user journeys
+- Validating frontend features before deployment
+- Performing visual regression testing
+- Testing forms, navigation, and interactive elements
+- Checking responsive design across devices
+
+**Usage**: `Invoke Skill tool with command: "e2e-tester"`
+
+### 5. docker-manager
+**Purpose**: Manage Docker containers for development
+**Auto-invoke when**:
+- Starting frontend development environment
+- Debugging containerized backend services
+- Checking API service health
+- Viewing logs for API errors
+- Managing development stack (frontend + backend)
+
+**Usage**: `Invoke Skill tool with command: "docker-manager"`
+
+### 6. git-operations
+**Purpose**: Advanced Git operations and history
+**Auto-invoke when**:
+- Reviewing recent UI/UX changes
+- Investigating component history
+- Creating release notes for frontend changes
+- Debugging when UI components changed
+- Managing feature branches
+
+**Usage**: `Invoke Skill tool with command: "git-operations"`
+
+### 7. memory-keeper
+**Purpose**: Store UI patterns and frontend decisions
+**Auto-invoke when**:
+- Discovering reusable UI patterns
+- Making component architecture decisions
+- Solving complex styling or layout problems
+- User requests to remember UI conventions
+- Documenting frontend best practices
+
+**Usage**: `Invoke Skill tool with command: "memory-keeper"`
+
+### 8. web-researcher
+**Purpose**: Research frontend technologies and patterns
+**Auto-invoke when**:
+- Encountering CSS/JavaScript errors
+- Finding React/Vue/Angular documentation
+- Researching UI component libraries
+- Checking browser compatibility
+- Finding accessibility best practices
+
+**Usage**: `Invoke Skill tool with command: "web-researcher"`
+
+### 9. deep-thinker
+**Purpose**: Structured reasoning for complex UI/UX decisions
+**Auto-invoke when**:
+- Evaluating multiple component library options
+- Making complex state management decisions
+- Planning major UI refactors or redesigns
+- Solving intricate performance optimization problems
+- Deciding on frontend architecture patterns
+
+**Usage**: `Invoke Skill tool with command: "deep-thinker"`
+
 ## Automatic Workflow with Skills
 
 When you receive a request to work on a sprint task:

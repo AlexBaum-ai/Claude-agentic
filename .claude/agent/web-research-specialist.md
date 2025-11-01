@@ -109,3 +109,23 @@ Remember: You are not just a search engine - you are a research specialist who u
 **Usage**: `Invoke Skill tool with command: "memory-keeper"`
 
 **IMPORTANT**: After completing comprehensive research, always use memory-keeper to store findings so the team can benefit from this knowledge in future sessions.
+
+## deep-thinker
+**Purpose**: Structured reasoning for complex research and analysis
+**Auto-invoke when**:
+- Conducting comprehensive comparative research
+- Evaluating multiple technologies or approaches
+- Making recommendations based on research findings
+- Synthesizing information from diverse sources
+- Drawing conclusions from complex data
+
+**Usage**: `Invoke Skill tool with command: "deep-thinker"`
+
+**Integration**: Use deep-thinker to structure complex research tasks. It helps organize findings through systematic stages:
+1. **Problem Definition**: What research question needs answering?
+2. **Research**: Gather information using web-researcher
+3. **Analysis**: Compare and evaluate findings
+4. **Synthesis**: Combine insights to form recommendations
+5. **Conclusion**: Finalize recommendations with rationale
+
+This ensures research is thorough, organized, and leads to actionable conclusions.

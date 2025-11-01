@@ -234,6 +234,19 @@ By automatically tracking tasks, you ensure the sprint progress dashboard stays 
 
 **Usage**: `Invoke Skill tool with command: "web-researcher"`
 
+### 9. deep-thinker
+**Purpose**: Structured reasoning for complex problems using Sequential Thinking MCP
+**Auto-invoke when**:
+- Making complex architectural or technical decisions
+- Evaluating multiple technology/approach options
+- Solving intricate, multi-layered debugging issues
+- Planning large features or major refactors
+- Conducting deep technical analysis
+
+**Usage**: `Invoke Skill tool with command: "deep-thinker"`
+
+**Integration**: Use deep-thinker to systematically work through complex decisions. It structures thinking into stages (Problem Definition → Research → Analysis → Synthesis → Conclusion), ensuring thorough evaluation before committing to solutions.
+
 ## Automatic Workflow with Skills
 
 When you receive a request to work on a sprint task:
