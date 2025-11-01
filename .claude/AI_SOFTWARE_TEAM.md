@@ -1,6 +1,46 @@
 # AI Software Development Team
 
-Complete guide for het AI software team dat samen SaaS producten ontwikkelt.
+Complete guide voor het AI software team dat samen SaaS producten ontwikkelt.
+
+---
+
+## ⚠️ BELANGRIJKE CORRECTIE: MCP Toegang
+
+**Dit document bevat verouderde informatie over MCP toegang voor agents.**
+
+### De Realiteit:
+
+```
+❌ NIET WAAR: "Agents hebben MCP toegang"
+✅ WAAR:      "Agents gebruiken alleen standaard tools + Bash CLI"
+```
+
+**Wat Agents WEL Hebben:**
+- File operations (Read, Write, Edit, Glob, Grep)
+- Bash tool (git, docker, npm, psql, sentry-cli, npx playwright)
+- Web tools (WebFetch, WebSearch)
+- Task management (TodoWrite)
+- Skills en SlashCommands
+
+**Wat Agents NIET Hebben:**
+- ❌ Direct MCP toegang (mcp__sentry__*, mcp__memory__*, etc.)
+- ❌ Sequential Thinking MCP
+- ❌ Memory MCP
+- ❌ Playwright MCP
+- ❌ PostgreSQL MCP
+
+**Hoe Het Wel Werkt:**
+- Agents gebruiken **CLI equivalenten** via Bash tool
+- `sentry-cli` in plaats van Sentry MCP
+- `psql` in plaats van PostgreSQL MCP
+- `npx playwright` in plaats van Playwright MCP
+- Files voor persistentie in plaats van Memory MCP
+
+**Voor Echte MCP Toegang:**
+- Gebruik **Skills** in de main conversation (niet agents!)
+- Zie `MCP_REALITY.md` voor details
+
+---
 
 ## 👥 Team Structuur
 
@@ -67,13 +107,18 @@ team-coordinator:
 - Performance optimization
 - Error handling & Sentry integration
 
-**MCPs Beschikbaar:**
-- ✅ **Sequential Thinking** - Architecture decisions
-- ✅ **Memory** - Remember patterns & decisions
-- ✅ **Sentry** - Error monitoring & instrumentation
-- ✅ **PostgreSQL** - Database access & verification
-- ✅ **Git** - Version control
-- ✅ **Docker** - Container management
+**Tools Beschikbaar:**
+- ✅ **Bash** - CLI access (git, docker, npm, psql, sentry-cli, etc.)
+- ✅ **File Operations** - Read, Write, Edit, Glob, Grep
+- ✅ **Web Tools** - WebFetch, WebSearch
+- ❌ **MCP Toegang** - Agents hebben GEEN direct MCP toegang
+
+**CLI Equivalenten (via Bash):**
+- `sentry-cli` voor error monitoring
+- `psql $DATABASE_URL` voor database queries
+- `git` voor version control
+- `docker` voor container management
+- Files voor data persistentie (geen Memory MCP)
 
 **Skills:**
 - `backend-dev-guidelines` - Follow layered architecture
@@ -90,14 +135,14 @@ team-coordinator:
 team-coordinator assigns: "Implement auth API"
 ↓
 backend-developer:
-  1. Uses Sequential Thinking MCP → Plans JWT flow
-  2. Uses Memory MCP → Stores "JWT: 15min access, 7d refresh"
+  1. Analyzes requirements → Plans JWT flow
+  2. Writes to file → Stores design decisions in projectdoc/
   3. Implements endpoints:
      - POST /auth/register
      - POST /auth/login
      - POST /auth/logout
-  4. Uses Sentry MCP → Adds error tracking
-  5. Uses PostgreSQL MCP → Verifies schema
+  4. Uses Bash: sentry-cli → Adds error tracking
+  5. Uses Bash: psql → Verifies schema
   6. Writes unit + integration tests
   7. Reports to team-coordinator: "Backend ready ✅"
 ```
@@ -116,11 +161,16 @@ backend-developer:
 - Responsive design
 - Performance optimization
 
-**MCPs Beschikbaar:**
-- ✅ **Sequential Thinking** - UI architecture decisions
-- ✅ **Memory** - Remember component patterns
-- ✅ **Playwright** - E2E testing (via qa-software-tester)
-- ✅ **Git** - Version control
+**Tools Beschikbaar:**
+- ✅ **Bash** - CLI access (git, npm, npx playwright)
+- ✅ **File Operations** - Read, Write, Edit, Glob, Grep
+- ✅ **Web Tools** - WebFetch, WebSearch
+- ❌ **MCP Toegang** - Agents hebben GEEN direct MCP toegang
+
+**CLI Equivalenten (via Bash):**
+- `npx playwright test` voor E2E testing
+- `git` voor version control
+- Files voor component patterns (geen Memory MCP)
 
 **Skills:**
 - `frontend-dev-guidelines` - React + MUI v7 patterns
@@ -137,14 +187,14 @@ team-coordinator assigns: "Implement login UI"
 Dependency: Backend API ready ✅
 ↓
 frontend-developer:
-  1. Uses Sequential Thinking MCP → Plans component structure
+  1. Analyzes requirements → Plans component structure
   2. Implements components:
      - LoginPage.tsx
      - RegisterPage.tsx
      - AuthContext
   3. Integrates with backend API /auth/login
-  4. Uses Memory MCP → Stores "Auth pattern: Context + hooks"
-  5. Tests locally
+  4. Writes to file → Documents pattern in projectdoc/
+  5. Tests locally with Bash: npm run dev
   6. Reports to team-coordinator: "Frontend ready ✅"
 ```
 
@@ -162,10 +212,16 @@ frontend-developer:
 - Production monitoring (Sentry)
 - Bug verification
 
-**MCPs Beschikbaar:**
-- ✅ **Playwright** - E2E testing, screenshots, visual regression
-- ✅ **Sentry** - Production error monitoring
-- ✅ **Sequential Thinking** - Test strategy planning
+**Tools Beschikbaar:**
+- ✅ **Bash** - CLI access (npx playwright, sentry-cli, npm test)
+- ✅ **File Operations** - Read, Write, Edit, Glob, Grep
+- ✅ **Web Tools** - WebFetch, WebSearch
+- ❌ **MCP Toegang** - Agents hebben GEEN direct MCP toegang
+
+**CLI Equivalenten (via Bash):**
+- `npx playwright test` voor E2E testing
+- `sentry-cli issues list` voor error monitoring
+- `npm test` of `jest` voor unit/integration tests
 
 **Skills:**
 - `test-validator` - Run all test suites
@@ -185,15 +241,17 @@ Dependencies: Backend ✅ + Frontend ✅
 ↓
 qa-software-tester:
   1. Uses test-validator skill:
-     - Unit tests: ✅ 32/32
-     - Integration: ✅ 24/24
+     - Bash: npm test → Unit tests: ✅ 32/32
+     - Bash: npm run test:integration → Integration: ✅ 24/24
 
-  2. Uses e2e-tester skill (Playwright MCP):
+  2. Uses e2e-tester skill:
+     - Bash: npx playwright test auth
      - Login flow: ✅ PASS
      - Register flow: ✅ PASS
-     - Screenshots taken
+     - Screenshots saved to test-results/
 
   3. Uses spec-guardian skill:
+     - Reads API specs from projectdoc/
      - API compliance: ✅ 100%
      - DB schema: ✅ matches
 
@@ -214,9 +272,15 @@ qa-software-tester:
 - Update PROGRESS.md
 - Report sprint metrics
 
-**MCPs Beschikbaar:**
-- ✅ **Memory** - Remember sprint decisions
-- ✅ **Git** - Version control
+**Tools Beschikbaar:**
+- ✅ **Bash** - CLI access (git)
+- ✅ **File Operations** - Read, Write, Edit sprint JSON files
+- ❌ **MCP Toegang** - Agents hebben GEEN direct MCP toegang
+
+**Data Storage:**
+- Sprint data opgeslagen in `.claude/sprints/*.json`
+- Progress tracking in `PROGRESS.md`
+- Geen Memory MCP, gebruikt files
 
 **Skills:**
 - `sprint-reader` - Read sprint tasks
@@ -267,10 +331,16 @@ sprint-orchestrator:
 - Database schema design
 - Technology choices
 
-**MCPs Beschikbaar:**
-- ✅ **Sequential Thinking** - Complex architecture planning
-- ✅ **Memory** - Store architectural decisions
-- ✅ **Web Search** - Research best practices
+**Tools Beschikbaar:**
+- ✅ **Bash** - CLI access
+- ✅ **File Operations** - Write documentation to projectdoc/
+- ✅ **Web Tools** - WebSearch for research
+- ❌ **MCP Toegang** - Agents hebben GEEN direct MCP toegang
+
+**Data Storage:**
+- Architecture docs in `projectdoc/` directory
+- Design decisions in markdown files
+- Geen Memory MCP, gebruikt files
 
 **Skills:**
 - `spec-guardian` - Spec verification
@@ -284,24 +354,21 @@ sprint-orchestrator:
 User: "Design payment processing system"
 ↓
 project-architect:
-  1. Uses Sequential Thinking MCP:
-     - Analyzes requirements
+  1. Analyzes requirements:
      - Considers: Stripe vs PayPal vs custom
      - Designs: Payment flow, refunds, webhooks
 
-  2. Uses Web Search MCP:
+  2. Uses WebSearch tool:
      - Researches best practices
-     - Checks latest Stripe API
+     - Checks latest Stripe API documentation
 
-  3. Creates documentation:
+  3. Creates documentation (via Write tool):
      - projectdoc/04-API-ENDPOINTS.md
      - projectdoc/03-DATABASE-SCHEMA.md
      - projectdoc/01-ARCHITECTUUR.md
+     - projectdoc/DECISIONS.md (design decisions log)
 
-  4. Uses Memory MCP:
-     - Stores: "Payment: Stripe, webhook-based"
-
-  5. Reports to team-coordinator:
+  4. Reports to team-coordinator:
      "Architecture ready, specs documented ✅"
 ```
 
@@ -607,32 +674,47 @@ With parallel work:
 
 ---
 
-## 🔧 MCP Distribution
+## 🔧 Tool Toegang (Gecorrigeerde Versie)
 
 ```
-Agent                  | MCPs Available
------------------------|--------------------------------
-team-coordinator       | ALL (for coordination)
-backend-developer      | Sequential, Memory, Sentry,
-                       | PostgreSQL, Git, Docker
-frontend-developer     | Sequential, Memory, Playwright,
-                       | Git
-qa-software-tester     | Playwright, Sentry, Sequential
-sprint-orchestrator    | Memory, Git
-project-architect      | Sequential, Memory, Web Search
+Agent                  | MCP Toegang | Tools Beschikbaar
+-----------------------|-------------|----------------------------------
+team-coordinator       | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
+backend-developer      | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
+frontend-developer     | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
+qa-software-tester     | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
+sprint-orchestrator    | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
+project-architect      | ❌ Nee      | Bash, Files, Web, TodoWrite, Task
 ```
+
+**Via Bash CLI Equivalenten:**
+- `sentry-cli` → Error monitoring
+- `psql` → Database queries
+- `npx playwright` → E2E testing
+- `git` → Version control
+- `docker` → Containers
+- Files → Data persistentie (i.p.v. Memory MCP)
 
 ---
 
 ## 📚 Summary
 
-**You now have a complete AI software team:**
+**Je hebt nu een compleet AI software team:**
 
 👨‍💼 **team-coordinator** - Team lead, orchestrates everyone
-👨‍💻 **backend-developer** - Backend specialist (APIs, DB, Sentry)
+👨‍💻 **backend-developer** - Backend specialist (APIs, DB, CLI tools)
 🎨 **frontend-developer** - Frontend specialist (React, UI/UX)
-🧪 **qa-software-tester** - QA specialist (Testing, Playwright, Sentry monitoring)
-📋 **sprint-orchestrator** - Sprint manager (task tracking)
-🏗️ **project-architect** - Architecture specialist (design, specs)
+🧪 **qa-software-tester** - QA specialist (Testing via CLI tools)
+📋 **sprint-orchestrator** - Sprint manager (task tracking in files)
+🏗️ **project-architect** - Architecture specialist (design docs)
 
-**Result**: A coordinated team that ships production-ready SaaS features faster and with higher quality than a single agent could! 🚀
+**Realiteit**:
+- ✅ Gecoördineerd team workflow systeem
+- ✅ Role-based specialisatie via prompts
+- ✅ Werkt met standaard tools + Bash CLI
+- ❌ Geen direct MCP toegang voor agents
+- ⚠️ Voor MCP's: Gebruik skills in main conversation
+
+**Result**: Een gestructureerde aanpak voor complexe projecten via role-based agents die CLI tools gebruiken! 🚀
+
+**Voor Echte MCP Integratie**: Zie `MCP_REALITY.md`
