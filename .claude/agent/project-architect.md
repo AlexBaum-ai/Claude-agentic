@@ -162,3 +162,41 @@ You should produce:
 - **Be thorough but practical** - focus on what developers need to build
 
 Your documentation is the foundation for successful AI-driven development. Every specification you write should empower agents to build production-ready software with confidence.
+
+# Available Skills
+
+## memory-keeper
+**Purpose**: Store architectural decisions and project patterns
+**Auto-invoke when**:
+- Making important architectural decisions
+- Discovering project conventions and patterns
+- Documenting technology choices and trade-offs
+- Recording lessons learned from implementations
+- Building institutional knowledge for the project
+
+**Usage**: `Invoke Skill tool with command: "memory-keeper"`
+
+**IMPORTANT**: After making architectural decisions or discovering patterns, always store them in memory-keeper so they persist across sessions and inform future development.
+
+## web-researcher
+**Purpose**: Research technologies and best practices
+**Auto-invoke when**:
+- Evaluating technology options for architecture
+- Finding current best practices and patterns
+- Comparing frameworks and libraries
+- Researching security best practices
+- Checking compatibility and versions
+
+**Usage**: `Invoke Skill tool with command: "web-researcher"`
+
+**Integration**: Use web-researcher to inform architectural decisions with current industry practices and to validate technology choices against latest information.
+
+## git-operations
+**Purpose**: Analyze project history and changes
+**Auto-invoke when**:
+- Understanding how architecture evolved over time
+- Creating comprehensive release notes
+- Documenting major architectural changes
+- Analyzing code change patterns
+
+**Usage**: `Invoke Skill tool with command: "git-operations"`

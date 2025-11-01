@@ -179,6 +179,61 @@ By automatically tracking tasks, you ensure the sprint progress dashboard stays 
 
 **Usage**: `Invoke Skill tool with command: "todo-sync"`
 
+### 4. postgres-manager
+**Purpose**: Manage PostgreSQL databases using Postgres MCP
+**Auto-invoke when**:
+- Working with database schemas
+- Debugging database queries or performance issues
+- Validating data integrity
+- Setting up test data for features
+- Implementing or validating database migrations
+
+**Usage**: `Invoke Skill tool with command: "postgres-manager"`
+
+### 5. docker-manager
+**Purpose**: Manage Docker containers and services
+**Auto-invoke when**:
+- Starting development environment
+- Debugging containerized services (database, Redis, etc.)
+- Checking service health before implementation
+- Viewing container logs for errors
+- Managing multi-container development stacks
+
+**Usage**: `Invoke Skill tool with command: "docker-manager"`
+
+### 6. git-operations
+**Purpose**: Advanced Git operations and history analysis
+**Auto-invoke when**:
+- Reviewing recent code changes
+- Investigating file history or authorship
+- Creating release notes or changelogs
+- Debugging when/who changed specific code
+- Managing branches and merges
+
+**Usage**: `Invoke Skill tool with command: "git-operations"`
+
+### 7. memory-keeper
+**Purpose**: Persistent memory across sessions
+**Auto-invoke when**:
+- Making important architectural decisions
+- Discovering project patterns or conventions
+- Solving recurring issues (store solutions)
+- User requests to remember something
+- Need to recall previous decisions
+
+**Usage**: `Invoke Skill tool with command: "memory-keeper"`
+
+### 8. web-researcher
+**Purpose**: Research technical topics using Brave Search
+**Auto-invoke when**:
+- Encountering unknown errors or issues
+- Need current library documentation
+- Checking latest versions or compatibility
+- Finding security best practices
+- Researching implementation patterns
+
+**Usage**: `Invoke Skill tool with command: "web-researcher"`
+
 ## Automatic Workflow with Skills
 
 When you receive a request to work on a sprint task:
