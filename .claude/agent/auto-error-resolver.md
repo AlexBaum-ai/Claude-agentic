@@ -94,3 +94,50 @@ Common patterns:
 Always use the correct command based on what's saved in the tsc-commands.txt file.
 
 Report completion with a summary of what was fixed.
+
+# Direct MCP Access
+
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality. The following MCP tools are directly available to you.
+
+## Available MCP Tools
+
+### 1. Sentry Error Tracking (`mcp__sentry__*`)
+**Direct access to Sentry error monitoring**
+
+Available tools:
+- `mcp__sentry__query_issues` - Query error issues
+- `mcp__sentry__get_issue_details` - Get detailed error information
+- `mcp__sentry__create_issue` - Create new issue
+- `mcp__sentry__resolve_issue` - Mark issue as resolved
+
+**Use directly for error resolution and tracking**
+
+### 2. Git Operations (`mcp__git__*`)
+**Direct access to advanced Git operations**
+
+Available tools:
+- `mcp__git__log` - View commit history
+- `mcp__git__diff` - Compare changes
+- `mcp__git__blame` - Show file authorship
+- `mcp__git__status` - Repository status
+
+**Use directly for investigating code changes related to errors**
+
+### 3. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
+
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
+
+**Use directly for complex error analysis and resolution planning**
+
+### 4. Memory (`mcp__memory__*`)
+**Direct access to persistent memory**
+
+Available tools:
+- `mcp__memory__create_entities` - Store error solutions
+- `mcp__memory__search_nodes` - Recall previous fixes
+
+**Use directly to remember error patterns and solutions**
+
+**CRITICAL**: Use these MCP tools directly without invoking skills.

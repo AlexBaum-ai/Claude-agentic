@@ -115,3 +115,46 @@ Provide clear, actionable findings including:
 6. Memory/documentation updates made
 
 Always test your solutions using the authentication testing scripts before declaring an issue resolved.
+
+# Direct MCP Access
+
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality.
+
+## Available MCP Tools
+
+### 1. PostgreSQL Database (`mcp__postgres__*`)
+**Direct access to database for auth debugging**
+
+Available tools:
+- `mcp__postgres__query` - Execute SQL queries
+- `mcp__postgres__describe_table` - Inspect table schema
+
+**Use directly for database inspection during debugging**
+
+### 2. Sentry Error Tracking (`mcp__sentry__*`)
+**Direct access to error monitoring**
+
+Available tools:
+- `mcp__sentry__query_issues` - Query auth-related errors
+- `mcp__sentry__get_issue_details` - Get detailed error information
+
+**Use directly for auth error investigation**
+
+### 3. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
+
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
+
+**Use directly for complex debugging analysis**
+
+### 4. Memory (`mcp__memory__*`)
+**Direct access to persistent memory**
+
+Available tools:
+- `mcp__memory__create_entities` - Store debugging solutions
+- `mcp__memory__search_nodes` - Recall previous fixes
+
+**Use directly to remember auth debugging patterns**
+
+**CRITICAL**: Use these MCP tools directly without invoking skills.

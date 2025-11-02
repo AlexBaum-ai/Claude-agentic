@@ -145,137 +145,159 @@ Assistant: Task completed! The authentication API is ready at /api/auth with end
 
 By automatically tracking tasks, you ensure the sprint progress dashboard stays accurate, and you communicate clearly when APIs are ready for frontend integration.
 
-# Agent Skills Integration
+# Direct MCP Access
 
-**CRITICAL**: You have access to specialized skills that automate sprint and todo management. These skills should be invoked automatically during your workflow.
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality. The following MCP tools are directly available to you.
 
-## Available Skills
+## Available MCP Tools
 
-### 1. sprint-reader
-**Purpose**: Read and parse sprint task data from JSON files
-**Auto-invoke when**:
-- Starting any work (to check for sprint tasks)
-- User mentions a task ID (SPRINT-X-YYY)
-- Checking what tasks are available
-- Verifying task dependencies
+### 1. PostgreSQL Database (`mcp__postgres__*`)
+**Direct access to PostgreSQL database operations**
 
-**Usage**: `Invoke Skill tool with command: "sprint-reader"`
+Available tools:
+- `mcp__postgres__query` - Execute SQL queries
+- `mcp__postgres__describe_table` - Inspect table schema
+- `mcp__postgres__list_tables` - List all tables
+- `mcp__postgres__execute_migration` - Run database migrations
 
-### 2. task-tracker
-**Purpose**: Automatically update sprint task status
-**Auto-invoke when**:
-- Starting a sprint task → marks as in-progress
-- Completing a sprint task → marks as completed, updates timestamps
-- Encountering a blocker → marks as blocked
-
-**Usage**: `Invoke Skill tool with command: "task-tracker"`
-
-### 3. todo-sync
-**Purpose**: Synchronize sprint tasks with TodoWrite tool
-**Auto-invoke when**:
-- Starting a sprint task → creates todo items
-- Breaking down tasks → adds sub-tasks to todo list
-- Completing work → syncs completion status
-
-**Usage**: `Invoke Skill tool with command: "todo-sync"`
-
-### 4. postgres-manager
-**Purpose**: Manage PostgreSQL databases using Postgres MCP
-**Auto-invoke when**:
-- Working with database schemas
-- Debugging database queries or performance issues
+**Use directly when**:
+- Designing or modifying database schemas
+- Writing or optimizing SQL queries
+- Debugging database issues
+- Setting up test data
 - Validating data integrity
-- Setting up test data for features
-- Implementing or validating database migrations
 
-**Usage**: `Invoke Skill tool with command: "postgres-manager"`
+**Example**:
+```
+User: "Create a users table with email and password fields"
+Agent: *Uses mcp__postgres__* tools directly to check existing schema and create table*
+```
 
-### 5. docker-manager
-**Purpose**: Manage Docker containers and services
-**Auto-invoke when**:
+### 2. Sentry Error Tracking (`mcp__sentry__*`)
+**Direct access to Sentry error monitoring**
+
+Available tools:
+- `mcp__sentry__query_issues` - Query error issues
+- `mcp__sentry__get_issue_details` - Get detailed error information
+- `mcp__sentry__create_issue` - Create new issue
+- `mcp__sentry__resolve_issue` - Mark issue as resolved
+
+**Use directly when**:
+- Monitoring production errors
+- Debugging reported issues
+- Verifying error tracking integration
+- Analyzing error patterns
+
+### 3. Git Operations (`mcp__git__*`)
+**Direct access to advanced Git operations**
+
+Available tools:
+- `mcp__git__log` - View commit history
+- `mcp__git__diff` - Compare changes
+- `mcp__git__blame` - Show file authorship
+- `mcp__git__show` - Show commit details
+- `mcp__git__status` - Repository status
+
+**Use directly when**:
+- Reviewing code history
+- Investigating when code changed
+- Creating changelogs
+- Understanding code evolution
+
+### 4. Docker Management (`mcp__docker__*`)
+**Direct access to Docker container operations**
+
+Available tools:
+- `mcp__docker__list_containers` - List running containers
+- `mcp__docker__inspect_container` - Get container details
+- `mcp__docker__container_logs` - View container logs
+- `mcp__docker__start_container` - Start a container
+- `mcp__docker__stop_container` - Stop a container
+
+**Use directly when**:
 - Starting development environment
-- Debugging containerized services (database, Redis, etc.)
-- Checking service health before implementation
-- Viewing container logs for errors
-- Managing multi-container development stacks
+- Debugging containerized services
+- Checking service health
+- Viewing logs for errors
 
-**Usage**: `Invoke Skill tool with command: "docker-manager"`
+### 5. Memory (`mcp__memory__*`)
+**Direct access to persistent memory across sessions**
 
-### 6. git-operations
-**Purpose**: Advanced Git operations and history analysis
-**Auto-invoke when**:
-- Reviewing recent code changes
-- Investigating file history or authorship
-- Creating release notes or changelogs
-- Debugging when/who changed specific code
-- Managing branches and merges
+Available tools:
+- `mcp__memory__create_entities` - Store new knowledge
+- `mcp__memory__add_observations` - Add to existing knowledge
+- `mcp__memory__search_nodes` - Search stored knowledge
+- `mcp__memory__read_graph` - Read entire knowledge graph
 
-**Usage**: `Invoke Skill tool with command: "git-operations"`
+**Use directly when**:
+- Storing architectural decisions
+- Remembering project patterns
+- Recalling previous solutions
+- Building project knowledge base
 
-### 7. memory-keeper
-**Purpose**: Persistent memory across sessions
-**Auto-invoke when**:
-- Making important architectural decisions
-- Discovering project patterns or conventions
-- Solving recurring issues (store solutions)
-- User requests to remember something
-- Need to recall previous decisions
+### 6. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
 
-**Usage**: `Invoke Skill tool with command: "memory-keeper"`
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
 
-### 8. web-researcher
-**Purpose**: Research technical topics using Brave Search
-**Auto-invoke when**:
-- Encountering unknown errors or issues
-- Need current library documentation
-- Checking latest versions or compatibility
-- Finding security best practices
-- Researching implementation patterns
+**Use directly when**:
+- Making complex technical decisions
+- Breaking down intricate problems
+- Evaluating multiple approaches
+- Planning major features
 
-**Usage**: `Invoke Skill tool with command: "web-researcher"`
+## Direct Usage Pattern
 
-### 9. deep-thinker
-**Purpose**: Structured reasoning for complex problems using Sequential Thinking MCP
-**Auto-invoke when**:
-- Making complex architectural or technical decisions
-- Evaluating multiple technology/approach options
-- Solving intricate, multi-layered debugging issues
-- Planning large features or major refactors
-- Conducting deep technical analysis
-
-**Usage**: `Invoke Skill tool with command: "deep-thinker"`
-
-**Integration**: Use deep-thinker to systematically work through complex decisions. It structures thinking into stages (Problem Definition → Research → Analysis → Synthesis → Conclusion), ensuring thorough evaluation before committing to solutions.
-
-## Automatic Workflow with Skills
-
-When you receive a request to work on a sprint task:
-
+**OLD WAY (via skills)**:
 ```
-1. Invoke "sprint-reader" skill
-   → Reads task details, acceptance criteria, dependencies
-
-2. Invoke "todo-sync" skill
-   → Creates TodoWrite items for the task
-
-3. Invoke "task-tracker" skill
-   → Marks sprint task as in-progress
-   → Updates timestamps and progress files
-
-4. Implement the feature
-   → Use TodoWrite to track implementation sub-steps
-
-5. When complete:
-   a. Invoke "task-tracker" skill → Mark sprint task completed
-   b. Invoke "todo-sync" skill → Sync completion to TodoWrite
-   c. Report completion to user
+1. Invoke Skill tool with "postgres-manager"
+2. Skill activates MCP tools
+3. Use MCP tools
 ```
 
-## Benefits
+**NEW WAY (direct access)**:
+```
+1. Use mcp__postgres__* tools directly
+2. No skill invocation needed
+```
 
-- **Zero manual tracking**: Skills handle all status updates automatically
-- **Always in sync**: TodoWrite and sprint JSON stay synchronized
-- **Visibility**: Users see real-time progress
-- **Consistency**: All agents follow same tracking protocol
+## Example Workflows
 
-**IMPORTANT**: Always invoke these skills - they are essential for maintaining accurate sprint progress across the team.
+### Database Schema Design
+```
+User: "Add a products table with name, price, and inventory fields"
+Agent:
+1. Use mcp__postgres__list_tables to check existing tables
+2. Use mcp__postgres__query to create new table
+3. Use mcp__postgres__describe_table to verify structure
+```
+
+### Error Investigation
+```
+User: "Check if there are any recent authentication errors"
+Agent:
+1. Use mcp__sentry__query_issues with filter for auth errors
+2. Use mcp__sentry__get_issue_details for detailed analysis
+3. Provide summary and recommendations
+```
+
+### Container Management
+```
+User: "Start the database container"
+Agent:
+1. Use mcp__docker__list_containers to find database container
+2. Use mcp__docker__start_container to start it
+3. Use mcp__docker__container_logs to verify startup
+```
+
+## Integration with Sprint Tasks
+
+When working on sprint tasks, you still use SlashCommand tools for task management:
+- `/backend-developer/start-task [TASK-ID]` - Start a task
+- `/backend-developer/mark-complete [TASK-ID]` - Complete a task
+- `/backend-developer/mark-blocked [TASK-ID]` - Mark as blocked
+
+But for MCP operations (database, git, docker, sentry, memory), use the MCP tools DIRECTLY without invoking skills.
+
+**CRITICAL**: You have direct access to all MCP tools listed above. Use them immediately when needed - no skill invocation required.
