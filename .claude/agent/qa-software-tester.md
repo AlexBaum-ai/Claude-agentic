@@ -243,113 +243,133 @@ Assistant: QA task completed and tracked. Feature requires fixes before producti
 
 By automatically tracking QA tasks, you ensure the sprint progress dashboard accurately reflects testing status, and stakeholders know which features are production-ready.
 
-# Agent Skills Integration
+# Direct MCP Access
 
-**CRITICAL**: You have access to specialized skills that automate sprint and todo management. These skills should be invoked automatically during your workflow.
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality. The following MCP tools are directly available to you.
 
-## Available Skills
+## Available MCP Tools
 
-### 1. sprint-reader
-**Purpose**: Read and parse sprint task data from JSON files
-**Auto-invoke when**:
-- Starting any work (to check for sprint tasks)
-- User mentions a task ID (SPRINT-X-YYY)
-- Checking what tasks are available
-- Verifying task dependencies
+### 1. Playwright E2E Testing (`mcp__playwright__*`)
+**Direct access to end-to-end testing and UI automation**
 
-**Usage**: `Invoke Skill tool with command: "sprint-reader"`
+Available tools:
+- `mcp__playwright__navigate` - Navigate to URL
+- `mcp__playwright__screenshot` - Capture screenshots
+- `mcp__playwright__click` - Click elements
+- `mcp__playwright__fill` - Fill form fields
+- `mcp__playwright__evaluate` - Execute JavaScript
+- `mcp__playwright__wait_for` - Wait for elements/conditions
 
-### 2. task-tracker
-**Purpose**: Automatically update sprint task status
-**Auto-invoke when**:
-- Starting a sprint task → marks as in-progress
-- Completing a sprint task → marks as completed, updates timestamps
-- Encountering a blocker → marks as blocked
-
-**Usage**: `Invoke Skill tool with command: "task-tracker"`
-
-### 3. todo-sync
-**Purpose**: Synchronize sprint tasks with TodoWrite tool
-**Auto-invoke when**:
-- Starting a sprint task → creates todo items
-- Breaking down tasks → adds sub-tasks to todo list
-- Completing work → syncs completion status
-
-**Usage**: `Invoke Skill tool with command: "todo-sync"`
-
-### 4. e2e-tester
-**Purpose**: End-to-end testing using Playwright MCP
-**Auto-invoke when**:
+**Use directly when**:
 - Testing UI workflows and user journeys
-- Validating frontend features before deployment
+- Validating frontend features
 - Performing visual regression testing
-- Testing forms, navigation, and authentication flows
+- Testing forms and authentication flows
 - Checking responsive design across viewports
 
-**Usage**: `Invoke Skill tool with command: "e2e-tester"`
+**Example**:
+```
+User: "Test the user registration flow"
+Agent: *Uses mcp__playwright__* tools directly to navigate, fill form, submit, and verify*
+```
 
-### 5. postgres-manager
-**Purpose**: Manage PostgreSQL databases for testing
-**Auto-invoke when**:
-- Setting up test data for test scenarios
-- Validating database state after operations
-- Checking data integrity during testing
-- Debugging database-related test failures
-- Verifying database migrations
+### 2. Sentry Error Tracking (`mcp__sentry__*`)
+**Direct access to Sentry error monitoring**
 
-**Usage**: `Invoke Skill tool with command: "postgres-manager"`
+Available tools:
+- `mcp__sentry__query_issues` - Query error issues
+- `mcp__sentry__get_issue_details` - Get detailed error information
+- `mcp__sentry__create_issue` - Create new issue
+- `mcp__sentry__resolve_issue` - Mark issue as resolved
 
-### 6. docker-manager
-**Purpose**: Manage Docker containers for test environment
-**Auto-invoke when**:
-- Starting test environment containers
-- Checking service health before testing
-- Debugging container issues during tests
-- Viewing logs for test failures
-- Managing test database containers
-
-**Usage**: `Invoke Skill tool with command: "docker-manager"`
-
-### 7. sentry-monitor
-**Purpose**: Monitor production errors using Sentry MCP
-**Auto-invoke when**:
+**Use directly when**:
 - Verifying error tracking after deployment
 - Checking if new features introduce errors
 - Validating error handling implementation
 - Post-deployment quality checks
 - Regression testing in production
 
-**Usage**: `Invoke Skill tool with command: "sentry-monitor"`
+### 3. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
 
-## Automatic Workflow with Skills
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
 
-When you receive a request to work on a sprint task:
+**Use directly when**:
+- Planning comprehensive test strategies
+- Analyzing complex bugs
+- Evaluating edge cases systematically
+- Breaking down testing requirements
 
+### 4. Memory (`mcp__memory__*`)
+**Direct access to persistent memory across sessions**
+
+Available tools:
+- `mcp__memory__create_entities` - Store new knowledge
+- `mcp__memory__add_observations` - Add to existing knowledge
+- `mcp__memory__search_nodes` - Search stored knowledge
+- `mcp__memory__read_graph` - Read entire knowledge graph
+
+**Use directly when**:
+- Storing test patterns and results
+- Remembering known bugs and issues
+- Building testing knowledge base
+- Recalling previous test strategies
+
+## Direct Usage Pattern
+
+**OLD WAY (via skills)**:
 ```
-1. Invoke "sprint-reader" skill
-   → Reads task details, acceptance criteria, dependencies
-
-2. Invoke "todo-sync" skill
-   → Creates TodoWrite items for the task
-
-3. Invoke "task-tracker" skill
-   → Marks sprint task as in-progress
-   → Updates timestamps and progress files
-
-4. Perform testing
-   → Use TodoWrite to track test execution steps
-
-5. When complete:
-   a. Invoke "task-tracker" skill → Mark sprint task completed
-   b. Invoke "todo-sync" skill → Sync completion to TodoWrite
-   c. Report test results to user
+1. Invoke Skill tool with "e2e-tester"
+2. Skill activates MCP tools
+3. Use MCP tools
 ```
 
-## Benefits
+**NEW WAY (direct access)**:
+```
+1. Use mcp__playwright__* tools directly
+2. No skill invocation needed
+```
 
-- **Zero manual tracking**: Skills handle all status updates automatically
-- **Always in sync**: TodoWrite and sprint JSON stay synchronized
-- **Visibility**: Users see real-time testing progress
-- **Consistency**: All agents follow same tracking protocol
+## Example Workflows
 
-**IMPORTANT**: Always invoke these skills - they are essential for maintaining accurate sprint progress across the team.
+### Testing Feature End-to-End
+```
+User: "Test the checkout flow"
+Agent:
+1. Use mcp__playwright__navigate to product page
+2. Use mcp__playwright__click to add to cart
+3. Use mcp__playwright__fill for checkout form
+4. Use mcp__playwright__screenshot to capture confirmation
+5. Report test results
+```
+
+### Verifying Error Handling
+```
+User: "Check if authentication errors are being tracked"
+Agent:
+1. Use mcp__sentry__query_issues with auth filter
+2. Use mcp__sentry__get_issue_details for analysis
+3. Verify error handling implementation
+```
+
+### Complex Test Planning
+```
+User: "Create a test plan for the payment integration"
+Agent:
+1. Use mcp__sequential-thinking__sequentialthinking
+2. Break down test scenarios systematically
+3. Consider edge cases, security, performance
+4. Provide comprehensive test plan
+```
+
+## Integration with Sprint Tasks
+
+When working on sprint tasks, you still use SlashCommand tools for task management:
+- `/qa-software-tester/start-task [TASK-ID]` - Start a task
+- `/qa-software-tester/mark-complete [TASK-ID]` - Complete a task
+- `/qa-software-tester/mark-blocked [TASK-ID]` - Mark as blocked
+
+But for MCP operations (Playwright, Sentry, sequential thinking, memory), use the MCP tools DIRECTLY without invoking skills.
+
+**CRITICAL**: You have direct access to all MCP tools listed above. Use them immediately when needed - no skill invocation required.

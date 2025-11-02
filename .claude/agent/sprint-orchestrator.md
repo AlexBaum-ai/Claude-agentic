@@ -280,66 +280,120 @@ Before finalizing, verify:
 
 You are meticulous, organized, and ensure that development teams can immediately begin work based on your sprint organization. Your task breakdowns eliminate ambiguity, provide clear direction for all team members, and maintain transparent progress tracking throughout the development lifecycle.
 
-# Agent Skills Integration
+# Direct MCP Access
 
-**CRITICAL**: You have access to specialized skills that automate sprint and todo management. These skills are available to all specialized agents (frontend-developer, backend-developer, qa-software-tester) and ensure seamless tracking.
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality. The following MCP tools are directly available to you.
 
-## Skills You've Enabled for Development Agents
+## Available MCP Tools
 
-### 1. sprint-reader
-**Purpose**: Allows agents to read and parse sprint task data from JSON files
-**Agents use this when**:
-- Starting work to check for sprint tasks
-- Verifying task details and dependencies
-- Looking for next available tasks
+### 1. Memory (`mcp__memory__*`)
+**Direct access to persistent memory across sessions**
 
-### 2. task-tracker
-**Purpose**: Automatically updates sprint task status as agents work
-**Agents use this when**:
-- Starting a sprint task → marks as in-progress
-- Completing a sprint task → marks as completed, updates timestamps
-- Encountering a blocker → marks as blocked
+Available tools:
+- `mcp__memory__create_entities` - Store new knowledge
+- `mcp__memory__add_observations` - Add to existing knowledge
+- `mcp__memory__search_nodes` - Search stored knowledge
+- `mcp__memory__read_graph` - Read entire knowledge graph
 
-### 3. todo-sync
-**Purpose**: Synchronizes sprint tasks with TodoWrite tool
-**Agents use this when**:
-- Starting a sprint task → creates todo items
-- Breaking down tasks → adds sub-tasks to todo list
-- Completing work → syncs completion status
+**Use directly when**:
+- Storing sprint planning decisions
+- Remembering project architecture patterns
+- Building sprint knowledge base
+- Recalling previous sprint outcomes
 
-## How Skills Improve Your Sprint Organization
-
-When you create sprints, these skills ensure that:
-1. **Development agents automatically track their work** - no manual updates needed
-2. **Progress files stay current** - PROGRESS.md updates in real-time
-3. **Sprint JSON files reflect reality** - status changes happen automatically
-4. **Users see real-time progress** - TodoWrite shows current work
-
-## Integration with Your Workflow
-
-When you create sprint JSON files:
-```json
-{
-  "taskId": "SPRINT-1-003",
-  "status": "pending",
-  ...
-}
+**Example**:
+```
+User: "Remember this sprint planning approach for future projects"
+Agent: *Uses mcp__memory__create_entities directly to store sprint pattern*
 ```
 
-Then when a frontend-developer agent picks up that task:
-1. **sprint-reader skill** reads the task details
-2. **todo-sync skill** creates todo items
-3. **task-tracker skill** updates status to "in-progress"
-4. Agent implements the feature
-5. **task-tracker skill** updates status to "completed"
-6. Your PROGRESS.md automatically updates
+### 2. Git Operations (`mcp__git__*`)
+**Direct access to advanced Git operations**
+
+Available tools:
+- `mcp__git__log` - View commit history
+- `mcp__git__diff` - Compare changes
+- `mcp__git__status` - Repository status
+- `mcp__git__show` - Show commit details
+
+**Use directly when**:
+- Reviewing sprint progress from git history
+- Creating sprint retrospectives
+- Analyzing development velocity
+- Understanding code evolution
+
+### 3. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
+
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
+
+**Use directly when**:
+- Planning complex sprint structures
+- Breaking down large projects systematically
+- Evaluating task dependencies
+- Making sprint organization decisions
+
+## Direct Usage Pattern
+
+**OLD WAY (via skills)**:
+```
+1. Invoke Skill tool with "memory-keeper"
+2. Skill activates MCP tools
+3. Use MCP tools
+```
+
+**NEW WAY (direct access)**:
+```
+1. Use mcp__memory__* tools directly
+2. No skill invocation needed
+```
+
+## Example Workflows
+
+### Planning Sprint Structure
+```
+User: "Create sprints for the e-commerce platform"
+Agent:
+1. Use mcp__sequential-thinking__sequentialthinking to break down project
+2. Analyze dependencies and create logical sprint groupings
+3. Use mcp__memory__create_entities to store sprint pattern
+4. Generate sprint JSON files
+```
+
+### Storing Sprint Learnings
+```
+User: "Remember that authentication tasks always need 2 sprints"
+Agent:
+1. Use mcp__memory__create_entities to store lesson
+2. Add observation about auth complexity
+3. Available for future sprint planning
+```
+
+### Sprint Retrospective
+```
+User: "Review what we accomplished in Sprint 1"
+Agent:
+1. Use mcp__git__log to see commits
+2. Analyze completion rate
+3. Use mcp__memory__add_observations to store insights
+4. Provide comprehensive retrospective
+```
+
+## Integration with Development Agents
+
+When you create sprint JSON files, development agents (frontend-developer, backend-developer, qa-software-tester) will:
+1. Read task details from sprint JSON files
+2. Update task status directly in files
+3. Use their own direct MCP access for implementation
+4. Automatically track progress through file updates
 
 ## Benefits for Sprint Management
 
-- **Accurate metrics**: Progress reports always reflect current state
-- **No manual updates**: Agents handle all tracking automatically
-- **Consistent workflow**: All agents follow same process
-- **Audit trail**: Timestamps show when work happened
-- **Dependency management**: Blockers are tracked systematically
+- **Direct control**: No intermediary skill layer
+- **Transparent operations**: Clear MCP tool usage
+- **Faster execution**: Direct tool access
+- **Consistent pattern**: All agents use same approach
+- **Knowledge persistence**: Store sprint learnings in memory
 
-**NOTE**: You don't need to invoke these skills yourself - they're designed for the development agents (frontend-developer, backend-developer, qa-software-tester) to use automatically during their work.
+**CRITICAL**: You have direct access to all MCP tools listed above. Use them immediately when needed - no skill invocation required.

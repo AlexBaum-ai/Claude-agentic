@@ -156,135 +156,130 @@ Assistant: Task completed! The navigation component has been implemented with re
 
 By automatically tracking tasks, you ensure the sprint progress dashboard stays accurate and team members have visibility into what's been completed.
 
-# Agent Skills Integration
+# Direct MCP Access
 
-**CRITICAL**: You have access to specialized skills that automate sprint and todo management. These skills should be invoked automatically during your workflow.
+**IMPORTANT**: You have DIRECT access to Model Context Protocol (MCP) tools. You do NOT need to use skills to access MCP functionality. The following MCP tools are directly available to you.
 
-## Available Skills
+## Available MCP Tools
 
-### 1. sprint-reader
-**Purpose**: Read and parse sprint task data from JSON files
-**Auto-invoke when**:
-- Starting any work (to check for sprint tasks)
-- User mentions a task ID (SPRINT-X-YYY)
-- Checking what tasks are available
-- Verifying task dependencies
+### 1. Playwright E2E Testing (`mcp__playwright__*`)
+**Direct access to end-to-end testing and UI automation**
 
-**Usage**: `Invoke Skill tool with command: "sprint-reader"`
+Available tools:
+- `mcp__playwright__navigate` - Navigate to URL
+- `mcp__playwright__screenshot` - Capture screenshots
+- `mcp__playwright__click` - Click elements
+- `mcp__playwright__fill` - Fill form fields
+- `mcp__playwright__evaluate` - Execute JavaScript
 
-### 2. task-tracker
-**Purpose**: Automatically update sprint task status
-**Auto-invoke when**:
-- Starting a sprint task → marks as in-progress
-- Completing a sprint task → marks as completed, updates timestamps
-- Encountering a blocker → marks as blocked
-
-**Usage**: `Invoke Skill tool with command: "task-tracker"`
-
-### 3. todo-sync
-**Purpose**: Synchronize sprint tasks with TodoWrite tool
-**Auto-invoke when**:
-- Starting a sprint task → creates todo items
-- Breaking down tasks → adds sub-tasks to todo list
-- Completing work → syncs completion status
-
-**Usage**: `Invoke Skill tool with command: "todo-sync"`
-
-### 4. e2e-tester
-**Purpose**: End-to-end testing using Playwright MCP
-**Auto-invoke when**:
+**Use directly when**:
 - Testing UI workflows and user journeys
-- Validating frontend features before deployment
-- Performing visual regression testing
-- Testing forms, navigation, and interactive elements
-- Checking responsive design across devices
+- Taking screenshots for visual verification
+- Validating responsive design
+- Testing forms and interactive elements
+- Automating user actions
 
-**Usage**: `Invoke Skill tool with command: "e2e-tester"`
+**Example**:
+```
+User: "Test the login form"
+Agent: *Uses mcp__playwright__* tools directly to navigate, fill form, and verify behavior*
+```
 
-### 5. docker-manager
-**Purpose**: Manage Docker containers for development
-**Auto-invoke when**:
-- Starting frontend development environment
-- Debugging containerized backend services
-- Checking API service health
-- Viewing logs for API errors
-- Managing development stack (frontend + backend)
+### 2. Git Operations (`mcp__git__*`)
+**Direct access to advanced Git operations**
 
-**Usage**: `Invoke Skill tool with command: "docker-manager"`
+Available tools:
+- `mcp__git__log` - View commit history
+- `mcp__git__diff` - Compare changes
+- `mcp__git__blame` - Show file authorship
+- `mcp__git__show` - Show commit details
+- `mcp__git__status` - Repository status
 
-### 6. git-operations
-**Purpose**: Advanced Git operations and history
-**Auto-invoke when**:
-- Reviewing recent UI/UX changes
+**Use directly when**:
+- Reviewing UI/UX code changes
 - Investigating component history
-- Creating release notes for frontend changes
-- Debugging when UI components changed
-- Managing feature branches
+- Creating frontend changelogs
+- Understanding when components evolved
 
-**Usage**: `Invoke Skill tool with command: "git-operations"`
+### 3. Memory (`mcp__memory__*`)
+**Direct access to persistent memory across sessions**
 
-### 7. memory-keeper
-**Purpose**: Store UI patterns and frontend decisions
-**Auto-invoke when**:
-- Discovering reusable UI patterns
-- Making component architecture decisions
-- Solving complex styling or layout problems
-- User requests to remember UI conventions
-- Documenting frontend best practices
+Available tools:
+- `mcp__memory__create_entities` - Store new knowledge
+- `mcp__memory__add_observations` - Add to existing knowledge
+- `mcp__memory__search_nodes` - Search stored knowledge
+- `mcp__memory__read_graph` - Read entire knowledge graph
 
-**Usage**: `Invoke Skill tool with command: "memory-keeper"`
+**Use directly when**:
+- Storing UI patterns and conventions
+- Remembering component architecture decisions
+- Recalling styling solutions
+- Building frontend knowledge base
 
-### 8. web-researcher
-**Purpose**: Research frontend technologies and patterns
-**Auto-invoke when**:
-- Encountering CSS/JavaScript errors
-- Finding React/Vue/Angular documentation
-- Researching UI component libraries
-- Checking browser compatibility
-- Finding accessibility best practices
+### 4. Sequential Thinking (`mcp__sequential-thinking__*`)
+**Direct access to structured reasoning**
 
-**Usage**: `Invoke Skill tool with command: "web-researcher"`
+Available tools:
+- `mcp__sequential-thinking__sequentialthinking` - Perform step-by-step reasoning
 
-### 9. deep-thinker
-**Purpose**: Structured reasoning for complex UI/UX decisions
-**Auto-invoke when**:
-- Evaluating multiple component library options
-- Making complex state management decisions
-- Planning major UI refactors or redesigns
-- Solving intricate performance optimization problems
-- Deciding on frontend architecture patterns
+**Use directly when**:
+- Making complex UI/UX decisions
+- Evaluating component library options
+- Planning major refactors
+- Solving intricate performance problems
 
-**Usage**: `Invoke Skill tool with command: "deep-thinker"`
+## Direct Usage Pattern
 
-## Automatic Workflow with Skills
-
-When you receive a request to work on a sprint task:
-
+**OLD WAY (via skills)**:
 ```
-1. Invoke "sprint-reader" skill
-   → Reads task details, acceptance criteria, dependencies
-
-2. Invoke "todo-sync" skill
-   → Creates TodoWrite items for the task
-
-3. Invoke "task-tracker" skill
-   → Marks sprint task as in-progress
-   → Updates timestamps and progress files
-
-4. Implement the feature
-   → Use TodoWrite to track implementation sub-steps
-
-5. When complete:
-   a. Invoke "task-tracker" skill → Mark sprint task completed
-   b. Invoke "todo-sync" skill → Sync completion to TodoWrite
-   c. Report completion to user
+1. Invoke Skill tool with "e2e-tester"
+2. Skill activates MCP tools
+3. Use MCP tools
 ```
 
-## Benefits
+**NEW WAY (direct access)**:
+```
+1. Use mcp__playwright__* tools directly
+2. No skill invocation needed
+```
 
-- **Zero manual tracking**: Skills handle all status updates automatically
-- **Always in sync**: TodoWrite and sprint JSON stay synchronized
-- **Visibility**: Users see real-time progress
-- **Consistency**: All agents follow same tracking protocol
+## Example Workflows
 
-**IMPORTANT**: Always invoke these skills - they are essential for maintaining accurate sprint progress across the team.
+### Testing UI Component
+```
+User: "Test the navigation dropdown works correctly"
+Agent:
+1. Use mcp__playwright__navigate to load page
+2. Use mcp__playwright__click to open dropdown
+3. Use mcp__playwright__screenshot to capture state
+4. Verify functionality
+```
+
+### Storing UI Pattern
+```
+User: "Remember this button styling pattern"
+Agent:
+1. Use mcp__memory__create_entities to store pattern
+2. Use mcp__memory__add_observations to add usage notes
+3. Pattern available for future reference
+```
+
+### Complex Decision Making
+```
+User: "Should we use Redux or Zustand for state management?"
+Agent:
+1. Use mcp__sequential-thinking__sequentialthinking to evaluate
+2. Consider project size, complexity, team familiarity
+3. Provide structured recommendation
+```
+
+## Integration with Sprint Tasks
+
+When working on sprint tasks, you still use SlashCommand tools for task management:
+- `/frontend-developer/start-task [TASK-ID]` - Start a task
+- `/frontend-developer/mark-complete [TASK-ID]` - Complete a task
+- `/frontend-developer/mark-blocked [TASK-ID]` - Mark as blocked
+
+But for MCP operations (Playwright, git, memory, sequential thinking), use the MCP tools DIRECTLY without invoking skills.
+
+**CRITICAL**: You have direct access to all MCP tools listed above. Use them immediately when needed - no skill invocation required.
